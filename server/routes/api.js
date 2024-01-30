@@ -18,10 +18,6 @@ apiRouter.get('/callback', async (req, res) => {
     res.cookie('refresh_token', tokenResponse.refresh_token, {
       httpOnly: true,
     })
-    const testResponse = await getTopTrackData(tokenResponse.access_token);
-    console.log(testResponse)
-    const testResponse2 = await getUsersProfile(tokenResponse.access_token);
-    console.log(testResponse2)
   }
   res.redirect('http://localhost:3000');
 });
