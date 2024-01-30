@@ -3,8 +3,8 @@ const path = require('path');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
-const cookieParser = require('cookie-parser');
 const apiRouter = require('./routes/api');
+const cookieParser = require('cookie-parser');
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(express.json());

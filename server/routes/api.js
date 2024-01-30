@@ -1,6 +1,6 @@
 const express = require('express');
 const { SPOTIFY_CLIENT_ID, SCOPE, REDIRECT_URI } = require('../config');
-const { getSpotifyRefreshToken, getUsersProfile, getTopTrackData} = require('../lib/spotify');
+const { getSpotifyRefreshToken, getUsersProfile, getTopTrackData, getSpotifyAccessTokenByRefreshToken} = require('../lib/spotify');
 
 const apiRouter = express.Router();
 
@@ -16,7 +16,7 @@ apiRouter.get('/callback', async (req, res) => {
   const tokenResponse = await getSpotifyRefreshToken(code);
   if (tokenResponse) {
     res.cookie('refresh_token', tokenResponse.refresh_token, {
-      httpOnly: true
+      httpOnly: true,
     })
     const testResponse = await getTopTrackData(tokenResponse.access_token);
     console.log(testResponse)
@@ -27,8 +27,19 @@ apiRouter.get('/callback', async (req, res) => {
 });
 
 
-apiRouter.get('/refresh-token', (req, res) => {
-  res.status(200).json({ok: true});
+apiRouter.get('/token', async (req, res) => {
+    const refreshToken = req.cookies.refresh_token;
+    
+    const tokenResponse = await getSpotifyAccessTokenByRefreshToken(refreshToken);
+
+    if(tokenResponse) {
+      console.log(tokenResponse)
+      const topTrackData = await getTopTrackData(tokenResponse);
+      const userData = await getUsersProfile(tokenResponse);
+      res.status(200).json({topTrackData: topTrackData, userData: userData});
+    }
 });
+
+
 
 module.exports = apiRouter;
