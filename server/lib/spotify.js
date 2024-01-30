@@ -36,18 +36,21 @@ async function getSpotifyAccessTokenByRefreshToken(refreshToken) {
   searchParams.append('grant_type', 'refresh_token');
   searchParams.append('refresh_token', refreshToken);
   searchParams.append('client_id', SPOTIFY_CLIENT_ID);
+  const basicToken = new Buffer.from(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64'); 
 
   try {
     const response = await axios.post(SPOTIFY_TOKEN_ENDPOINT, searchParams, {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencode',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${basicToken}`,
       },
     });
 
-    return response.data;
+    return response.data.access_token;
   } catch (err) {
     console.error(err);
   }
+  return null;
 }
 
 async function getUsersProfile(accessToken) {
