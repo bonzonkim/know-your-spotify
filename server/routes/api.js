@@ -29,7 +29,6 @@ apiRouter.get('/token', async (req, res) => {
     const tokenResponse = await getSpotifyAccessTokenByRefreshToken(refreshToken);
 
     if(tokenResponse) {
-      console.log(tokenResponse)
       const topTrackData = await getTopTrackData(tokenResponse);
       const userData = await getUsersProfile(tokenResponse);
       res.status(200).json({topTrackData: topTrackData, userData: userData});
