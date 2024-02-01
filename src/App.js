@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import TrackList from './components/TrackList';
-import { ListDiv } from './styles/List';
+import { ListDiv } from './components/List';
+import LoginButton from './components/LoginButton';
+import Main from './components/Main';
+import Layout from './components/layout/Layout';
+import ContentsContainer from "./components/ContentsContainer";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -27,16 +31,21 @@ function App() {
   }, [])
 
   return (
-  <div className="App">
-    {token ? ( // token이 true일 때
-      <ListDiv>
-        <h3>{userData}'s Top Track for last 6 months</h3>
-            <TrackList topTrackData={topTrackData} />
-      </ListDiv>
-    ) : ( // token이 false일 때
-      <button onClick={() => window.location.href='/api/login'}>Login to Spotify</button>
-    )}
-  </div>
+    <Layout>
+
+      <ContentsContainer>
+        {!token && ( // token이 false일 때
+            <Main/>
+        )}
+
+        {token && ( // token이 true일 때
+            <>
+              <h3>{userData}'s Top Track for last 6 months</h3>
+                <TrackList topTrackData={topTrackData} />
+            </>
+        )}
+      </ContentsContainer>
+    </Layout>
 );
 }
 
