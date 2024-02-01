@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import LoginButton from "./LoginButton";
 
-const MainSectionStyle = styled.div`
+const LoginDivStyle = styled.div`
   background-color: rgb(190, 252, 192);
   display: flex;
   flex-direction: column;
@@ -11,16 +11,16 @@ const MainSectionStyle = styled.div`
   border-radius: 15px;
 `
 
-const Main = () => {
+const Login = () => {
   return (
-    <MainSectionStyle>
+    <LoginDivStyle>
         <h3>Know your Spotify Top Track List from 6months</h3>
         <h5>Continue to login with Spotify</h5>
-        <p>By loggin in, We gain access to read your:</p>
+        <p>By logging in, We gain access to read your:</p>
         <p>Spotify user-top-read, user-read-email</p>
         <LoginButton onClick={() => window.location.href='/api/login'}/>
-    </MainSectionStyle>
+    </LoginDivStyle>
   )
 }
 
-export default Main;
+export default Login;

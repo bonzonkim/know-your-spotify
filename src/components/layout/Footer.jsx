@@ -5,9 +5,6 @@ const FooterStyle = styled.footer`
   display: flex;
   justify-content: center;
 
-
-
-
   > h3 {
     cursor: pointer;
   }

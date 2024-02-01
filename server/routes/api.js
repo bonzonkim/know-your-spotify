@@ -25,7 +25,7 @@ apiRouter.get('/callback', async (req, res) => {
       httpOnly: true,
     })
   }
-  res.redirect('http://localhost:3000');
+  res.redirect('http://localhost:3000/track');
 });
 
 
@@ -38,7 +38,9 @@ apiRouter.get('/token', async (req, res) => {
       const topTrackData = await getTopTrackData(tokenResponse);
       const userData = await getUsersProfile(tokenResponse);
       const topArtistData = await getTopArtistData(tokenResponse);
-      console.log(topArtistData);
+    console.log(topTrackData);
+    console.log(userData);
+    console.log(topArtistData);
       res.status(200).json({topTrackData: topTrackData, userData: userData, topArtistData: topArtistData});
     }
 });

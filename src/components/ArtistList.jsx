@@ -1,27 +1,4 @@
-import styled from "@emotion/styled";
-import {IndexNumberStyle} from "./TrackList";
-
-const ContainerDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Table = styled.table`
-  border-collapse: collapse;
-  width: 100%;
-`;
-
-const TableRow = styled.tr`
-  border-bottom: 1px solid #ddd;
-`;
-
-const TableCell = styled.td`
-  padding: 10px;
-  
-  > img {
-    border-radius: 10px;
-  }
-`;
+import { ContainerDiv, Table, TableRow, TableCell, IndexNumberStyle } from "./styles/List";
 
 const ArtistList = ({ topArtistList, userData }) => {
     return (
@@ -29,7 +6,6 @@ const ArtistList = ({ topArtistList, userData }) => {
             <h3>{userData}'s Top Artist for last 6 months</h3>
             <Table>
                 <thead>
-
                 <TableRow>
                     <TableCell></TableCell>
                     <TableCell>Image</TableCell>
@@ -42,14 +18,14 @@ const ArtistList = ({ topArtistList, userData }) => {
                     <TableRow key={item.id}>
                         <IndexNumberStyle>{index+1}</IndexNumberStyle>
                         <TableCell>
-                            <img src={item.images[2].url} alt={'artist'} />
+                            <img src={item.images[1].url} alt={'artist'} />
                         </TableCell>
-                        <TableCell>{item.name}</TableCell>
+                        <TableCell>
+                          <h4>{item.name}</h4>
+                        </TableCell>
                         <TableCell>
                             {item.genres.map((genre, i, arr) => (
-                                <span key={i}>
-                    {genre} {i < arr.length - 1 && ", "}
-                  </span>
+                              <span key={i}>{genre} {i < arr.length - 1 && ", "}</span>
                             ))}
                         </TableCell>
                     </TableRow>

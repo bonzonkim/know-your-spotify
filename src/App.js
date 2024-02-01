@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import TrackList from './components/TrackList';
-import Main from './components/Main';
+import Login from './components/Login';
 import Layout from './components/layout/Layout';
 import ContentsContainer from "./components/layout/ContentsContainer";
 import ArtistList from './components/ArtistList';
@@ -34,16 +34,22 @@ function App() {
 
   return (
     <Layout>
-
       <ContentsContainer>
+
         {!token && ( // token이 false일 때
-            <Main/>
+            <Login/>
         )}
 
         {token && ( // token이 true일 때
             <>
-                <TrackList topTrackData={topTrackData} userData={userData} />
-                <ArtistList topArtistList={topArtistData} userData={userData} />
+            <Router>
+                <Link to="/track">Top Track</Link>
+                <Link to="/artist">Top Artist</Link>
+              <Routes>
+                <Route path='/track' element={<TrackList topTrackData={topTrackData} userData={userData} />} />
+                <Route path='/artist' element={<ArtistList topArtistList={topArtistData} userData={userData} />} />
+              </Routes>
+            </Router>
             </>
         )}
       </ContentsContainer>
