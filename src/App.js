@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import TrackList from './components/TrackList';
 import Main from './components/Main';
 import Layout from './components/layout/Layout';
 import ContentsContainer from "./components/layout/ContentsContainer";
+import ArtistList from './components/ArtistList';
 
 function App() {
   const [token, setToken] = useState(false);
   const [topTrackData, setTopTrackData] = useState([]);
+  const [topArtistData, setTopArtistData] = useState([]);
   const [userData, setUserData] = useState('');
 
   useEffect(() => {
@@ -20,6 +23,7 @@ function App() {
           setToken(true);
           setUserData(response.data.userData.display_name);
           setTopTrackData(response.data.topTrackData.items);
+          setTopArtistData(response.data.topArtistData.items);
         }
       } catch (err) {
         console.error('Error fetching token :', err);
@@ -38,11 +42,12 @@ function App() {
 
         {token && ( // token이 true일 때
             <>
-                <h3>{userData}'s Top Track for last 6 months</h3>
-                <TrackList topTrackData={topTrackData} />
+                <TrackList topTrackData={topTrackData} userData={userData} />
+                <ArtistList topArtistList={topArtistData} userData={userData} />
             </>
         )}
       </ContentsContainer>
+
     </Layout>
 );
 }

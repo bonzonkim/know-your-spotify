@@ -4,7 +4,8 @@ const { SPOTIFY_CLIENT_ID,
   REDIRECT_URI,
   SPOTIFY_TOKEN_ENDPOINT,
   SPOTIFY_USER_DATA_ENDPOINT,
-  SPOTIFY_TOP_TRACK_ENDPOINT
+  SPOTIFY_TOP_TRACK_ENDPOINT,
+  SPOTIFY_TOP_GENRE_ENDPOINT,
 }= require('../config');
 
 
@@ -82,6 +83,20 @@ async function getTopTrackData(accessToken) {
   return null;
 }
 
+async function getTopArtistData(accessToken) {
+  try {
+     const response = await axios.get(SPOTIFY_TOP_GENRE_ENDPOINT, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+  return null;
+}
+
 
 
 
@@ -92,4 +107,5 @@ module.exports = {
   getSpotifyAccessTokenByRefreshToken,
   getUsersProfile,
   getTopTrackData,
+  getTopArtistData,
 };

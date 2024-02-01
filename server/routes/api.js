@@ -1,6 +1,12 @@
 const express = require('express');
 const { SPOTIFY_CLIENT_ID, SCOPE, REDIRECT_URI } = require('../config');
-const { getSpotifyRefreshToken, getUsersProfile, getTopTrackData, getSpotifyAccessTokenByRefreshToken} = require('../lib/spotify');
+const {
+  getSpotifyRefreshToken,
+  getUsersProfile,
+  getTopTrackData,
+  getSpotifyAccessTokenByRefreshToken,
+  getTopArtistData
+} = require('../lib/spotify');
 
 const apiRouter = express.Router();
 
@@ -31,7 +37,9 @@ apiRouter.get('/token', async (req, res) => {
     if(tokenResponse) {
       const topTrackData = await getTopTrackData(tokenResponse);
       const userData = await getUsersProfile(tokenResponse);
-      res.status(200).json({topTrackData: topTrackData, userData: userData});
+      const topArtistData = await getTopArtistData(tokenResponse);
+      console.log(topArtistData);
+      res.status(200).json({topTrackData: topTrackData, userData: userData, topArtistData: topArtistData});
     }
 });
 
