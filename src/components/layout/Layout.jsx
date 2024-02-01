@@ -1,15 +1,14 @@
-import styled from '@emotion/styled';
 import Header from './Header';
+import Footer from './Footer';
 
-const LayoutStyle = styled.div`
-`
 
 const Layout = (props) => {
   return (
-    <LayoutStyle>
+    <div>
         <Header />
-         {props.children}
-    </LayoutStyle>
+           {props.children}
+        <Footer />
+    </div>
   )
 }
 
