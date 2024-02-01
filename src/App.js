@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import TrackList from './components/TrackList';
-import { ListDiv } from './components/List';
-import LoginButton from './components/LoginButton';
 import Main from './components/Main';
 import Layout from './components/layout/Layout';
-import ContentsContainer from "./components/ContentsContainer";
+import ContentsContainer from "./components/layout/ContentsContainer";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -40,7 +38,7 @@ function App() {
 
         {token && ( // token이 true일 때
             <>
-              <h3>{userData}'s Top Track for last 6 months</h3>
+                <h3>{userData}'s Top Track for last 6 months</h3>
                 <TrackList topTrackData={topTrackData} />
             </>
         )}

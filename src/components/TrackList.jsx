@@ -5,6 +5,12 @@ const TrackListStyle = styled.table`
   border-spacing: 10px;
   margin: auto;
   text-align: center;
+  background-color: rgb(190, 252, 192);
+  border-radius: 10px;
+
+  > table > tbody > tr > td > img {
+    border-radius: 10px;
+  }
 `
 
 const IndexNumberStyle = styled.td`
