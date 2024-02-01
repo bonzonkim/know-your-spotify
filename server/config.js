@@ -5,6 +5,7 @@ const REDIRECT_URI = 'http://localhost:9000/api/callback'
 const SPOTIFY_TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_USER_DATA_ENDPOINT = 'https://api.spotify.com/v1/me';
 const SPOTIFY_TOP_TRACK_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks';
+const SPOTIFY_TOP_GENRE_ENDPOINT = 'https://api.spotify.com/v1/me/top/artists';
 
 module.exports = {
   SPOTIFY_CLIENT_ID,
@@ -14,4 +15,5 @@ module.exports = {
   SPOTIFY_TOKEN_ENDPOINT,
   SPOTIFY_USER_DATA_ENDPOINT,
   SPOTIFY_TOP_TRACK_ENDPOINT,
+  SPOTIFY_TOP_GENRE_ENDPOINT
 };
