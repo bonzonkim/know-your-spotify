@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import LoginButton from './LoginButton';
 
@@ -18,7 +19,7 @@ const Login = () => {
       <h5>Continue to login with Spotify</h5>
       <p>By logging in, We gain access to read your:</p>
       <p>Spotify user-top-read, user-read-email</p>
-      <LoginButton onClick={() => (window.location.href = '/api/login')} />
+      <LoginButton onClick={() => (window.location.href = '/api/login')} text={'Login with Spotify'} icon={'spotify'} />
     </LoginDivStyle>
   );
 };

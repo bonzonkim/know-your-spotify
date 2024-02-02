@@ -1,5 +1,7 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { SiSpotify } from 'react-icons/si';
+import { IoIosLogOut } from 'react-icons/io';
 
 const LoginStyleButton = styled.button`
   display: grid;
@@ -19,11 +21,11 @@ const LoginStyleButton = styled.button`
   color: black;
 `;
 
-const LoginButton = ({ onClick }) => {
+const LoginButton = ({ onClick, text, icon }) => {
   return (
     <LoginStyleButton onClick={onClick}>
-      <SiSpotify />
-      <span>Login Spotify</span>
+      {icon === 'spotify' ? <SiSpotify /> : <IoIosLogOut />}
+      <span>{text}</span>
     </LoginStyleButton>
   );
 };
