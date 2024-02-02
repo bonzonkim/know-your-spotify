@@ -32,7 +32,7 @@ apiRouter.get('/callback', async (req, res) => {
     res.cookie('access_token', tokenResponse.access_token, {
       httpOnly: true,
       maxAge: tokenResponse.expires_in * 1000, //milliseconds to second
-      path: '/' 
+      path: '/'
     });
 
     res.cookie('refresh_token', tokenResponse.refresh_token, {
@@ -48,22 +48,24 @@ apiRouter.get('/token', async (req, res) => {
   const accessToken = req.cookies.access_token;
   const refreshToken = req.cookies.refresh_token;
 
-  if (accessToken) { // access_token 이 있을 경우 데이터 요청
+  if (accessToken) {
+    // access_token 이 있을 경우 데이터 요청
     const topTrackData = await getTopTrackData(accessToken);
     const userData = await getUsersProfile(accessToken);
     const topArtistData = await getTopArtistData(accessToken);
     res.status(200).json({ topTrackData: topTrackData, userData: userData, topArtistData: topArtistData });
-  } else if (refreshToken) { // access_token이 만료되어서 없을 경우 refresh_token으로 access_token을 다시 발급 받고 데이터 요청
-      const tokenResponse = await getSpotifyAccessTokenByRefreshToken(refreshToken);
-      const topTrackData = await getTopTrackData(tokenResponse);
-      const userData = await getUsersProfile(tokenResponse);
-      const topArtistData = await getTopArtistData(tokenResponse);
-      res.cookie('access_token', tokenResponse, {
+  } else if (refreshToken) {
+    // access_token이 만료되어서 없을 경우 refresh_token으로 access_token을 다시 발급 받고 데이터 요청
+    const tokenResponse = await getSpotifyAccessTokenByRefreshToken(refreshToken);
+    const topTrackData = await getTopTrackData(tokenResponse);
+    const userData = await getUsersProfile(tokenResponse);
+    const topArtistData = await getTopArtistData(tokenResponse);
+    res.cookie('access_token', tokenResponse, {
       httpOnly: true
-    })
-      res.status(200).json({ topTrackData: topTrackData, userData: userData, topArtistData: topArtistData });
+    });
+    res.status(200).json({ topTrackData: topTrackData, userData: userData, topArtistData: topArtistData });
   } else {
-      res.redirect('http://localhost:3000/');
+    res.redirect('http://localhost:3000/');
   }
 });
 
