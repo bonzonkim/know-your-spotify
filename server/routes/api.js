@@ -61,11 +61,13 @@ apiRouter.get('/token', async (req, res) => {
     const userData = await getUsersProfile(tokenResponse);
     const topArtistData = await getTopArtistData(tokenResponse);
     res.cookie('access_token', tokenResponse, {
-      httpOnly: true
+      httpOnly: true,
+      maxAge: tokenResponse.expires_in * 1000,
+      path: '/'
     });
     res.status(200).json({ topTrackData: topTrackData, userData: userData, topArtistData: topArtistData });
   } else {
-    res.redirect('http://localhost:3000/');
+    res.redirect('http://localhost:3000/api/logout');
   }
 });
 
