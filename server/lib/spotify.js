@@ -9,7 +9,7 @@ const {
   SPOTIFY_TOP_GENRE_ENDPOINT
 } = require('../config');
 
-async function getSpotifyRefreshToken(code) {
+async function getSpotifyTokens(code) {
   const searchParams = new URLSearchParams();
   searchParams.append('grant_type', 'authorization_code');
   searchParams.append('redirect_uri', REDIRECT_URI);
@@ -24,7 +24,6 @@ async function getSpotifyRefreshToken(code) {
         Authorization: `Basic ${basicToken}`
       }
     });
-
     return response.data;
   } catch (err) {
     console.error(err);
@@ -97,7 +96,7 @@ async function getTopArtistData(accessToken) {
 }
 
 module.exports = {
-  getSpotifyRefreshToken,
+  getSpotifyTokens,
   getSpotifyAccessTokenByRefreshToken,
   getUsersProfile,
   getTopTrackData,
