@@ -14,9 +14,9 @@ app.use(cookieParser());
 app.use('/api', apiRouter);
 
 app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
 app.listen(9000, () => {
-	console.log('SERVER LISTENING ON 9000');
+  console.log('SERVER LISTENING ON 9000');
 });
