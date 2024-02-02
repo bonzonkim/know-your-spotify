@@ -9,9 +9,11 @@ const HeaderStyle = styled.header`
   //background-color: rgb(242,253,245);
   background-color: rgb(152, 255, 152);
   //background-color: rgb(101, 212, 110);
+  grid-template-columns: 2.8fr 0.2fr;
+  place-items: center;
 
-  > p {
-    cursor: pointer;
+  > h2 {
+    padding-left: 130px;
   }
 `;
 

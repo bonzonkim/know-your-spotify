@@ -5,7 +5,7 @@ import { LinkButtonDiv } from './styles/Link';
 const ClickedStyle = {
   color: 'black', // Inherit the text color
   textDecoration: 'none', // Remove underline
-  background: 'rgb(101, 212, 110)',
+  background: '#00da5a',
   padding: '8px 20px',
   borderRadius: '15px'
 };
