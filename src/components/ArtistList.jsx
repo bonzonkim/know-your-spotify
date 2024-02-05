@@ -15,24 +15,25 @@ const ArtistList = ({ topArtistList, userData }) => {
           </TableRow>
         </thead>
         <tbody>
-          {topArtistList.map((item, index) => (
-            <TableRow key={item.id}>
-              <IndexNumberStyle>{index + 1}</IndexNumberStyle>
-              <TableCell>
-                <img src={item.images[1].url} alt={'artist'} />
-              </TableCell>
-              <TableCell>
-                <h4>{item.name}</h4>
-              </TableCell>
-              <TableCell>
-                {item.genres.map((genre, i, arr) => (
-                  <span key={i}>
-                    {genre} {i < arr.length - 1 && ', '}
-                  </span>
-                ))}
-              </TableCell>
-            </TableRow>
-          ))}
+          {topArtistList &&
+            topArtistList.map((item, index) => (
+              <TableRow key={item.id}>
+                <IndexNumberStyle>{index + 1}</IndexNumberStyle>
+                <TableCell>
+                  <img src={item.images[1].url} alt={'artist'} />
+                </TableCell>
+                <TableCell>
+                  <h4>{item.name}</h4>
+                </TableCell>
+                <TableCell>
+                  {item.genres.map((genre, i, arr) => (
+                    <span key={i}>
+                      {genre} {i < arr.length - 1 && ', '}
+                    </span>
+                  ))}
+                </TableCell>
+              </TableRow>
+            ))}
         </tbody>
       </Table>
     </ContainerDiv>

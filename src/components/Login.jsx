@@ -15,8 +15,7 @@ const LoginDivStyle = styled.div`
 const Login = () => {
   return (
     <LoginDivStyle>
-      <h3>Know your Spotify Top Track List from 6months</h3>
-      <h5>Continue to login with Spotify</h5>
+      <h3>Know your Spotify Top Tracks & Artists List from 6months</h3>
       <p>By logging in, We gain access to read your:</p>
       <p>Spotify user-top-read, user-read-email</p>
       <LoginButton onClick={() => (window.location.href = '/api/login')} text={'Login with Spotify'} icon={'spotify'} />

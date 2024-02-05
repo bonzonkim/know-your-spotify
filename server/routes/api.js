@@ -9,19 +9,18 @@ const {
 } = require('../lib/spotify');
 
 const apiRouter = express.Router();
-
+/**
+ * /login => /callback => /token =>
+ *  데이터와 함께 메인페이지 리디렉션, 데이터 렌더링
+ */
+// 로그인 클릭 시 code 발급후 /callback 페이지로 리디렉트
 apiRouter.get('/login', (_, res) => {
   res.redirect(
     `https://accounts.spotify.com/authorize?response_type=code&client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}`
   );
 });
 
-apiRouter.get('/logout', (_, res) => {
-  res.clearCookie('access_token');
-  res.clearCookie('refresh_token');
-  res.redirect('/');
-});
-
+// 발급받은 code로 token발급 후 쿠키에 저장
 apiRouter.get('/callback', async (req, res) => {
   const searchParams = new URLSearchParams(req.query);
   const code = searchParams.get('code');
@@ -44,6 +43,18 @@ apiRouter.get('/callback', async (req, res) => {
   res.redirect('http://localhost:3000/track');
 });
 
+// 쿠키에 저장된 토큰 삭제 후 메인 페이지로 리디렉트
+apiRouter.get('/logout', (_, res) => {
+  res.clearCookie('access_token');
+  res.clearCookie('refresh_token');
+  res.redirect('/');
+});
+
+/** 메인 페이지 접속 시 자동으로 요청되는 엔드포인트
+ * 쿠키의 토큰 유무를 확인
+ * 쿠키가 있을 시 데이터 요청 이후 응답
+ * 쿠키가 없을 시 토큰 발급 후 데이터 요청 이후 응답
+ */
 apiRouter.get('/token', async (req, res) => {
   const accessToken = req.cookies.access_token;
   const refreshToken = req.cookies.refresh_token;

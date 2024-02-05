@@ -9,6 +9,11 @@ const {
   SPOTIFY_TOP_GENRE_ENDPOINT
 } = require('../config');
 
+/**
+ * /callback 에서 호출 토큰 발급 후 토큰 반환
+ * @param {string} code SearchParams code에 담긴 값
+ * @returns {JSON} 액세스토큰, 리프레쉬토큰, 만료시간 반환
+ */
 async function getSpotifyTokens(code) {
   const searchParams = new URLSearchParams();
   searchParams.append('grant_type', 'authorization_code');
@@ -31,6 +36,11 @@ async function getSpotifyTokens(code) {
   return null;
 }
 
+/**
+ * 실제 데이터 요청할 수 있는 액세스토큰 만료 시, 리프레쉬토큰으로 재발급
+ * @param {string} refreshToken 쿠키에 저장되어있는 리프레쉬토큰
+ * @returns {string} 리프레쉬토큰으로 토큰 재발급후 액세스 토큰 반환
+ */
 async function getSpotifyAccessTokenByRefreshToken(refreshToken) {
   const searchParams = new URLSearchParams();
   searchParams.append('grant_type', 'refresh_token');
