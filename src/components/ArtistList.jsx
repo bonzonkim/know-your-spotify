@@ -31,6 +31,7 @@ const ArtistList = ({ topArtistList, userData }) => {
                       {genre} {i < arr.length - 1 && ', '}
                     </span>
                   ))}
+                      {console.log(arr.length - 1)}
                 </TableCell>
               </TableRow>
             ))}
