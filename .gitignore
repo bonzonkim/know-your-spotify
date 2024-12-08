@@ -25,3 +25,7 @@ yarn-error.log*
 .idea/
 .vscode/
 .env
+
+server/package.json
+src/package.json
+src/public/**/*
