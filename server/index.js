@@ -13,7 +13,7 @@ app.use(cookieParser());
 // '/api' 라우터
 app.use('/api', apiRouter);
 
-app.get('/', function (req, res) {
+app.get('/', function (_, res) {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
