@@ -18,7 +18,11 @@ const Login = () => {
       <h3>Know your Spotify Top Tracks & Artists List from 6months</h3>
       <p>By logging in, We gain access to read your:</p>
       <p>Spotify user-top-read, user-read-email</p>
-      <LoginButton onClick={() => (window.location.href = '/api/login')} text={'Login with Spotify'} icon={'spotify'} />
+      <LoginButton
+        onClick={() => (window.location.href = 'http://localhost:9000/api/login')}
+        text={'Login with Spotify'}
+        icon={'spotify'}
+      />
     </LoginDivStyle>
   );
 };

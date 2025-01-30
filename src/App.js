@@ -24,7 +24,7 @@ function App() {
         setTimeout(async () => {
           // 로딩 컴포넌트를 위해 3초 딜레이
           // cookie에 저장돼있는 토큰값을 확인하고 데이터 받아옴
-          const response = await axios.get('/api/token');
+          const response = await axios.get('http://localhost:9000/api/token');
           if (response.data && response.data.userData && response.data.topTrackData && response.data.topArtistData) {
             // 응답에 에러메세지가 있어도 조건은 참이 되기 때문에 실제 데이터 유무를 확인 후 상태값 변경
             setToken(true);
