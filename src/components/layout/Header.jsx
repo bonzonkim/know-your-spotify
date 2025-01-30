@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import styled from '@emotion/styled';
 import LoginButton from '../LoginButton';
 
@@ -18,10 +19,19 @@ const HeaderStyle = styled.header`
 `;
 
 const Header = () => {
+  const handleLogout = async () => {
+    try {
+      await axios.get('http://localhost:9000/api/logout', { withCredentials: true });
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
   return (
     <HeaderStyle>
       <h2>Know your Spotify</h2>
-      <LoginButton onClick={() => (window.location.href = '/api/logout')} text={'Logout'} icon={'logout'} />
+      <LoginButton onClick={handleLogout} text={'Logout'} icon={'logout'} />
     </HeaderStyle>
   );
 };

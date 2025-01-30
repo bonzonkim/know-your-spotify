@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
@@ -7,6 +8,12 @@ const apiRouter = require('./routes/api');
 const cookieParser = require('cookie-parser');
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // React domain
+    credentials: true
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 

@@ -78,7 +78,7 @@ apiRouter.get('/token', async (req, res) => {
     });
     res.status(200).json({ topTrackData: topTrackData, userData: userData, topArtistData: topArtistData });
   } else {
-    res.redirect('http://localhost:3000/api/logout');
+    res.redirect('http://localhost:3000/');
   }
 });
 
