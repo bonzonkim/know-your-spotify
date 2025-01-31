@@ -8,12 +8,15 @@ const apiRouter = require('./routes/api');
 const cookieParser = require('cookie-parser');
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
-app.use(
-  cors({
-    origin: 'http://localhost:3000', // React domain
-    credentials: true
-  })
-);
+//app.use(
+//  cors({
+////    origin: 'http://localhost:80', // React domain
+//    origin: '*',
+//    credentials: true
+//  })
+//);
+app.use(cors());
+app.options('*', cors({credentials: true}));
 app.use(express.json());
 app.use(cookieParser());
 
